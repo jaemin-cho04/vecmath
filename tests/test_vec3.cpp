@@ -59,6 +59,17 @@ TEST(Vec3, Length) {
     EXPECT_DOUBLE_EQ(Vec3(1, 2, 3).length(), std::sqrt(14.0));
 }
 
+TEST(Vec3, Normalized) {
+    Vec3 v(1, 0, 0);
+    Vec3 n = v.normalized();
+    // when writing v.normalized(), the compiler translates that into Vec3::normalized(v) 
+    //— it passes v as the "this" pointer, which is how member functions work under the hood
+    EXPECT_DOUBLE_EQ(n.x, 1.0);
+    EXPECT_DOUBLE_EQ(n.y, 0.0);
+    EXPECT_DOUBLE_EQ(n.z, 0.0);
+    EXPECT_DOUBLE_EQ(n.length(), 1.0);
+}
+
 //   TEST(Vec3, DotProduct) {
 //       EXPECT_DOUBLE_EQ(dot(Vec3(1, 0, 0), Vec3(0, 1, 0)), 0.0);  // perpendicular
 //       EXPECT_DOUBLE_EQ(dot(Vec3(1, 2, 3), Vec3(1, 2, 3)), 14.0); // = length^2

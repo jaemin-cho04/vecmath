@@ -38,6 +38,11 @@ double Vec3::length() const {
 // std is for standard library 
 // *this is how member function refers to itself
 
+Vec3 Vec3::normalized() const {
+    double len = length();
+    return Vec3(x / len, y / len, z / len);
+} 
+
 
 // TODO: define operator+, operator-, operator* (scalar), dot, cross,
 //       length, normalized, etc. — matching whatever you declare in the header.
