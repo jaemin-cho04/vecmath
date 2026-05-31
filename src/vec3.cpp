@@ -43,8 +43,12 @@ Vec3 Vec3::normalized() const {
     return Vec3(x / len, y / len, z / len);
 } 
 
-
-// TODO: define operator+, operator-, operator* (scalar), dot, cross,
-//       length, normalized, etc. — matching whatever you declare in the header.
+Vec3 cross(const Vec3& a, const Vec3& b) {
+    return Vec3(
+        a.y * b.z - a.z * b.y,
+        a.z * b.x - a.x * b.z,
+        a.x * b.y - a.y * b.x
+    );
+}
 
 }  // namespace linalg
