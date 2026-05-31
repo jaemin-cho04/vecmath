@@ -51,6 +51,14 @@ TEST(Vec3, DotProduct) {
     EXPECT_DOUBLE_EQ(dot(Vec3(1, 2, 3), Vec3(1, 2, 3)), 14.0); // = length^2
 }
 
+TEST(Vec3, Length) {
+    Vec3 v(1, 0, 0);
+    EXPECT_DOUBLE_EQ(v.length(), 1.0);
+    EXPECT_DOUBLE_EQ(Vec3(0, 2, 0).length(), 2.0);
+    EXPECT_DOUBLE_EQ(Vec3(0, 0, 3).length(), 3.0);
+    EXPECT_DOUBLE_EQ(Vec3(1, 2, 3).length(), std::sqrt(14.0));
+}
+
 //   TEST(Vec3, DotProduct) {
 //       EXPECT_DOUBLE_EQ(dot(Vec3(1, 0, 0), Vec3(0, 1, 0)), 0.0);  // perpendicular
 //       EXPECT_DOUBLE_EQ(dot(Vec3(1, 2, 3), Vec3(1, 2, 3)), 14.0); // = length^2
