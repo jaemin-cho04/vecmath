@@ -79,7 +79,6 @@ TEST(Vec3, NormalizedNonUnit) {
     Vec3 v(1, 2, 3);
     Vec3 n = v.normalized();
     EXPECT_NEAR(n.length(), 1.0, 1e-9);
-    EXPECT_DOUBLE_EQ(n.length(), 1.0);
     EXPECT_DOUBLE_EQ(n.x, 1.0 / std::sqrt(14.0));
     EXPECT_DOUBLE_EQ(n.y, 2.0 / std::sqrt(14.0));
     EXPECT_DOUBLE_EQ(n.z, 3.0 / std::sqrt(14.0));
@@ -94,9 +93,10 @@ TEST(Vec3, CrossProduct) {
     EXPECT_DOUBLE_EQ(c.z, 1.0);
 }
 
-//   TEST(Vec3, DotProduct) {
-//       EXPECT_DOUBLE_EQ(dot(Vec3(1, 0, 0), Vec3(0, 1, 0)), 0.0);  // perpendicular
-//       EXPECT_DOUBLE_EQ(dot(Vec3(1, 2, 3), Vec3(1, 2, 3)), 14.0); // = length^2
-//   }
-//
-// For length/normalized, floats won't be exact — use EXPECT_NEAR(value, expected, 1e-9).
+TEST(Vec3, Compare) {
+    Vec3 a(1.0, 2.0, 3.0);
+    Vec3 b(1.0, 2.0, 3.0);
+    Vec3 c(1.0 + 1e-10, 2.0 - 1e-10, 3.0 + 1e-10);
+    EXPECT_TRUE(a == b); // should be exactly equal
+    EXPECT_TRUE(a == c); // should be approximately equal within tolerance
+}

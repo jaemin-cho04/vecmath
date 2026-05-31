@@ -54,4 +54,11 @@ Vec3 cross(const Vec3& a, const Vec3& b) {
     );
 }
 
+bool operator==(const Vec3& a, const Vec3& b) {
+    const double EPSILON = 1e-9;
+    return std::abs(a.x - b.x) < EPSILON &&
+           std::abs(a.y - b.y) < EPSILON &&
+           std::abs(a.z - b.z) < EPSILON;
+}
+
 }  // namespace linalg
