@@ -13,6 +13,8 @@ TEST(Setup, ToolchainWorks) {
     EXPECT_DOUBLE_EQ(v.z, 3.0);
 }
 
+// TETS(test suite, test name())
+
 // --- YOUR TESTS GO HERE ------------------------------------------------------
 // Write the test BEFORE or RIGHT AFTER each operation. The pattern:
 
@@ -44,7 +46,7 @@ TEST(Vec3, MultipliesComponentwise) {
     EXPECT_DOUBLE_EQ(c.z, 9.0);
 }
 
-TEST(double, DotProduct) {
+TEST(Vec3, DotProduct) {
     EXPECT_DOUBLE_EQ(dot(Vec3(1, 0, 0), Vec3(0, 1, 0)), 0.0);  // perpendicular
     EXPECT_DOUBLE_EQ(dot(Vec3(1, 2, 3), Vec3(1, 2, 3)), 14.0); // = length^2
 }
