@@ -1,0 +1,19 @@
+# Build output
+build/
+out/
+cmake-build-*/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Compiled objects
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.exe
+
+CLAUDE.md
