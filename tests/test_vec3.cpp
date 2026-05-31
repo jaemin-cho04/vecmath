@@ -35,6 +35,15 @@ TEST(Vec3, SubtractsComponentwise) {
     EXPECT_DOUBLE_EQ(c.z, -3.0);
 }
 
+TEST(Vec3, MultipliesComponentwise) {
+    Vec3 a(1, 2, 3);
+    double s = 3.0;
+    Vec3 c = a * s;
+    EXPECT_DOUBLE_EQ(c.x, 3.0);
+    EXPECT_DOUBLE_EQ(c.y, 6.0);
+    EXPECT_DOUBLE_EQ(c.z, 9.0);
+}
+
 //   TEST(Vec3, DotProduct) {
 //       EXPECT_DOUBLE_EQ(dot(Vec3(1, 0, 0), Vec3(0, 1, 0)), 0.0);  // perpendicular
 //       EXPECT_DOUBLE_EQ(dot(Vec3(1, 2, 3), Vec3(1, 2, 3)), 14.0); // = length^2
