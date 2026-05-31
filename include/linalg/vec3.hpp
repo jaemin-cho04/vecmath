@@ -42,10 +42,10 @@ struct Vec3 {
 };
 
 // --- Free functions (often cleaner than members for binary ops) -------------
- Vec3   operator+(const Vec3& a, const Vec3& b);   
-// Vec3   operator-(const Vec3& a, const Vec3& b);   // TODO
-// Vec3   operator*(const Vec3& v, double s);        // TODO  (scale)
-// double dot(const Vec3& a, const Vec3& b);         // TODO
-// Vec3   cross(const Vec3& a, const Vec3& b);       // TODO
+Vec3   operator+(const Vec3& a, const Vec3& b);   
+Vec3   operator-(const Vec3& a, const Vec3& b);   
+Vec3   operator*(const Vec3& v, double s);
+double dot(const Vec3& a, const Vec3& b);
+Vec3   cross(const Vec3& a, const Vec3& b);
 
 }  // namespace linalg
