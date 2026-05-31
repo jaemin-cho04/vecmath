@@ -1,4 +1,5 @@
 #pragma once
+// tells compiler "only include this file once per compliation unit"
 
 // ============================================================================
 //  Vec3 — a 3D vector. THIS IS YOUR FIRST PIECE TO BUILD.
@@ -22,6 +23,7 @@
 // ============================================================================
 
 namespace linalg {
+// namespace is folder for names
 
 struct Vec3 {
     double x = 0.0;
@@ -30,7 +32,9 @@ struct Vec3 {
 
     // Constructors
     Vec3() = default;
+    // tells compiler "generate the default one for me"
     Vec3(double x, double y, double z);
+    // with semicolon, its a declaraiton
 
     // --- Member operations (you decide which are members vs free functions) ---
     // double length() const;            // TODO
@@ -38,7 +42,7 @@ struct Vec3 {
 };
 
 // --- Free functions (often cleaner than members for binary ops) -------------
-// Vec3   operator+(const Vec3& a, const Vec3& b);   // TODO
+ Vec3   operator+(const Vec3& a, const Vec3& b);   
 // Vec3   operator-(const Vec3& a, const Vec3& b);   // TODO
 // Vec3   operator*(const Vec3& v, double s);        // TODO  (scale)
 // double dot(const Vec3& a, const Vec3& b);         // TODO
