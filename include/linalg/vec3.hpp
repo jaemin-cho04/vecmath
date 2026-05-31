@@ -37,8 +37,9 @@ struct Vec3 {
     // with semicolon, its a declaraiton
 
     // --- Member operations (you decide which are members vs free functions) ---
-    double length() const;            // TODO
-    // Vec3   normalized() const;        // TODO
+    double length() const;         
+    // const at the end means "this function doesn't modify the object" — it can be called on const Vec3s   
+    Vec3   normalized() const;        
 };
 
 // --- Free functions (often cleaner than members for binary ops) -------------
