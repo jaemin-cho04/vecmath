@@ -37,7 +37,7 @@ struct Vec3 {
     // with semicolon, its a declaraiton
 
     // --- Member operations (you decide which are members vs free functions) ---
-    // double length() const;            // TODO
+    double length() const;            // TODO
     // Vec3   normalized() const;        // TODO
 };
 

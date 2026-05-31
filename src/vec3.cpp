@@ -1,6 +1,8 @@
 #include <linalg/vec3.hpp>
 // pulls its own header, needs to know what Vec3 looks like before it can define functions
 
+#include <cmath> // for std::sqrt, etc. when you need it
+
 // You implement everything here. One definition is provided so the project
 // compiles and links cleanly on a fresh clone — replace/extend as you go.
 
@@ -28,6 +30,13 @@ Vec3 operator*(const Vec3& a, double s) {
 double dot(const Vec3& a, const Vec3& b) {
     return a.x * b.x + a.y * b.y + a.z * b.z;
 }
+// dot (a, b) = length^2
+
+double Vec3::length() const {
+    return std::sqrt(dot(*this, *this));
+}
+// std is for standard library 
+// *this is how member function refers to itself
 
 
 // TODO: define operator+, operator-, operator* (scalar), dot, cross,
