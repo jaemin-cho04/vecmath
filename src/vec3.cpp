@@ -24,6 +24,12 @@ Vec3 operator-(const Vec3& a, const Vec3& b) {
 Vec3 operator*(const Vec3& a, double s) {
     return Vec3(a.x * s, a.y * s, a.z * s);
 }
+
+double dot(const Vec3& a, const Vec3& b) {
+    return a.x * b.x + a.y * b.y + a.z * b.z;
+}
+
+
 // TODO: define operator+, operator-, operator* (scalar), dot, cross,
 //       length, normalized, etc. — matching whatever you declare in the header.
 
