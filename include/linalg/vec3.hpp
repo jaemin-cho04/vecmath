@@ -48,5 +48,7 @@ Vec3   operator-(const Vec3& a, const Vec3& b);
 Vec3   operator*(const Vec3& v, double s);
 double dot(const Vec3& a, const Vec3& b);
 Vec3   cross(const Vec3& a, const Vec3& b);
+bool operator==(const Vec3& a, const Vec3& b); 
+// with a tolerance for floating-point comparison
 
 }  // namespace linalg
