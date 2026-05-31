@@ -13,10 +13,15 @@ TEST(Setup, ToolchainWorks) {
     EXPECT_DOUBLE_EQ(v.z, 3.0);
 }
 
-// TETS(test suite, test name())
+// TEST(test suite, test name())
 
 // --- YOUR TESTS GO HERE ------------------------------------------------------
 // Write the test BEFORE or RIGHT AFTER each operation. The pattern:
+
+// TEST, EXPECT... are macros, they look like functions but they do more 
+// — they generate code that runs the test and reports results. 
+// You can write multiple EXPECTs in one TEST, but if one fails, 
+// the rest will still run (unlike ASSERT which aborts the test immediately).
 
 TEST(Vec3, AddsComponentwise) {
     Vec3 a(1, 2, 3);
@@ -68,6 +73,16 @@ TEST(Vec3, Normalized) {
     EXPECT_DOUBLE_EQ(n.y, 0.0);
     EXPECT_DOUBLE_EQ(n.z, 0.0);
     EXPECT_DOUBLE_EQ(n.length(), 1.0);
+}
+
+TEST(Vec3, NormalizedNonUnit) {
+    Vec3 v(1, 2, 3);
+    Vec3 n = v.normalized();
+    EXPECT_NEAR(n.length(), 1.0, 1e-9);
+    EXPECT_DOUBLE_EQ(n.length(), 1.0);
+    EXPECT_DOUBLE_EQ(n.x, 1.0 / std::sqrt(14.0));
+    EXPECT_DOUBLE_EQ(n.y, 2.0 / std::sqrt(14.0));
+    EXPECT_DOUBLE_EQ(n.z, 3.0 / std::sqrt(14.0));
 }
 
 TEST(Vec3, CrossProduct) {

@@ -40,6 +40,9 @@ double Vec3::length() const {
 
 Vec3 Vec3::normalized() const {
     double len = length();
+    if (len == 0.0) {
+        return Vec3(0, 0, 0); // or handle zero-length case as you see fit
+    }
     return Vec3(x / len, y / len, z / len);
 } 
 
