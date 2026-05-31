@@ -16,14 +16,24 @@ TEST(Setup, ToolchainWorks) {
 // --- YOUR TESTS GO HERE ------------------------------------------------------
 // Write the test BEFORE or RIGHT AFTER each operation. The pattern:
 
-   TEST(Vec3, AddsComponentwise) {
-       Vec3 a(1, 2, 3);
-       Vec3 b(4, 5, 6);
-       Vec3 c = a + b;
-       EXPECT_DOUBLE_EQ(c.x, 5.0);
-       EXPECT_DOUBLE_EQ(c.y, 7.0);
-       EXPECT_DOUBLE_EQ(c.z, 9.0);
-   }
+TEST(Vec3, AddsComponentwise) {
+    Vec3 a(1, 2, 3);
+    Vec3 b(4, 5, 6);
+    Vec3 c = a + b;
+    // translates into operator+(a, b)
+    EXPECT_DOUBLE_EQ(c.x, 5.0);
+    EXPECT_DOUBLE_EQ(c.y, 7.0);
+    EXPECT_DOUBLE_EQ(c.z, 9.0);
+}
+
+TEST(Vec3, SubtractsComponentwise) {
+    Vec3 a(1, 2, 3);
+    Vec3 b(4, 5, 6);
+    Vec3 c = a - b;
+    EXPECT_DOUBLE_EQ(c.x, -3.0);
+    EXPECT_DOUBLE_EQ(c.y, -3.0);
+    EXPECT_DOUBLE_EQ(c.z, -3.0);
+}
 
 //   TEST(Vec3, DotProduct) {
 //       EXPECT_DOUBLE_EQ(dot(Vec3(1, 0, 0), Vec3(0, 1, 0)), 0.0);  // perpendicular

@@ -17,6 +17,10 @@ Vec3 operator+(const Vec3& a, const Vec3& b) {
 // const means just reading
 // & enforces no copy is made when calling function
 
+Vec3 operator-(const Vec3& a, const Vec3& b) {
+    return Vec3(a.x - b.x, a.y - b.y, a.z - b.z);
+}
+
 // TODO: define operator+, operator-, operator* (scalar), dot, cross,
 //       length, normalized, etc. — matching whatever you declare in the header.
 
