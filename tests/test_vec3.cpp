@@ -73,6 +73,11 @@ TEST(Vec3, Normalized) {
     EXPECT_DOUBLE_EQ(n.y, 0.0);
     EXPECT_DOUBLE_EQ(n.z, 0.0);
     EXPECT_DOUBLE_EQ(n.length(), 1.0);
+    Vec3 z(0, 0, 0);
+    Vec3 nz = z.normalized();
+    EXPECT_DOUBLE_EQ(nz.x, 0.0);
+    EXPECT_DOUBLE_EQ(nz.y, 0.0);
+    EXPECT_DOUBLE_EQ(nz.z, 0.0);
 }
 
 TEST(Vec3, NormalizedNonUnit) {
