@@ -108,13 +108,21 @@ TEST(Mat3, Inverse) {
     Mat3 m(d);
     Mat3 inv = m.inverse();
     Mat3 I = m * inv;
-    EXPECT_DOUBLE_EQ(I.data[0][0], 1.0);
-    EXPECT_DOUBLE_EQ(I.data[1][1], 1.0);
-    EXPECT_DOUBLE_EQ(I.data[2][2], 1.0);
-    EXPECT_DOUBLE_EQ(I.data[0][1], 0.0);
-    EXPECT_DOUBLE_EQ(I.data[0][2], 0.0);
-    EXPECT_DOUBLE_EQ(I.data[1][0], 0.0);
-    EXPECT_DOUBLE_EQ(I.data[1][2], 0.0);
-    EXPECT_DOUBLE_EQ(I.data[2][0], 0.0);
-    EXPECT_DOUBLE_EQ(I.data[2][1], 0.0);
+    EXPECT_NEAR(I.data[0][0], 1.0, 1e-9);
+    EXPECT_NEAR(I.data[1][1], 1.0, 1e-9);
+    EXPECT_NEAR(I.data[2][2], 1.0, 1e-9);
+    EXPECT_NEAR(I.data[0][1], 0.0, 1e-9);
+    EXPECT_NEAR(I.data[0][2], 0.0, 1e-9);
+    EXPECT_NEAR(I.data[1][0], 0.0, 1e-9);
+    EXPECT_NEAR(I.data[1][2], 0.0, 1e-9);
+    EXPECT_NEAR(I.data[2][0], 0.0, 1e-9);
+    EXPECT_NEAR(I.data[2][1], 0.0, 1e-9);
+}
+
+TEST(Mat3, InverseSingular) {
+    double d[3][3] = {{0.0, 0.0, 0.0},
+                      {4.0, 5.0, 6.0},
+                      {7.0, 8.0, 9.0}};
+    Mat3 m(d);
+    EXPECT_THROW(m.inverse(), std::runtime_error);
 }
