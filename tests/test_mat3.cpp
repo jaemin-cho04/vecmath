@@ -91,3 +91,12 @@ TEST(Mat3, Determinant) {
     double det = determinant(m);
     EXPECT_DOUBLE_EQ(det, 1.0);
 }
+
+TEST(Mat3, DeterminantSingular) {
+    double d[3][3] = {{0.0, 0.0, 0.0},
+                      {4.0, 5.0, 6.0},
+                      {7.0, 8.0, 9.0}};
+    Mat3 m(d);
+    double det = determinant(m);
+    EXPECT_DOUBLE_EQ(det, 0.0);
+}
