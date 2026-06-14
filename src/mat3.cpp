@@ -2,6 +2,8 @@
 
 #include <cmath> // for std::sqrt, etc. when you need it
 
+#include <stdexcept> // for std::runtime_error if you choose to throw exceptions
+
 namespace linalg {
 
     Mat3::Mat3(double d[3][3]) {
@@ -54,6 +56,38 @@ namespace linalg {
                      m.data[0][1] * (m.data[1][0] * m.data[2][2] - m.data[1][2] * m.data[2][0]) +
                      m.data[0][2] * (m.data[1][0] * m.data[2][1] - m.data[1][1] * m.data[2][0]);
         return det;
+    }
+
+    Mat3 Mat3::inverse() const {
+        double det = determinant(*this);
+        if (std::abs(det) < 1e-9) {
+            // Handle non-invertible case as you see fit (e.g., throw an exception, return identity, etc.)
+            throw std::runtime_error("Matrix is not invertible");
+        }
+
+        // Step 1: compute the cofactor matrix
+        Mat3 cofactor;
+        cofactor.data[0][0] =  (data[1][1] * data[2][2] - data[1][2] * data[2][1]);
+        cofactor.data[0][1] = -(data[1][0] * data[2][2] - data[1][2] * data[2][0]);
+        cofactor.data[0][2] =  (data[1][0] * data[2][1] - data[1][1] * data[2][0]);
+        cofactor.data[1][0] = -(data[0][1] * data[2][2] - data[0][2] * data[2][1]);
+        cofactor.data[1][1] =  (data[0][0] * data[2][2] - data[0][2] * data[2][0]);
+        cofactor.data[1][2] = -(data[0][0] * data[2][1] - data[0][1] * data[2][0]);
+        cofactor.data[2][0] =  (data[0][1] * data[1][2] - data[0][2] * data[1][1]);
+        cofactor.data[2][1] = -(data[0][0] * data[1][2] - data[0][2] * data[1][0]);
+        cofactor.data[2][2] =  (data[0][0] * data[1][1] - data[0][1] * data[1][0]);
+    
+        // Step 2: transpose the cofactor matrix to get the adjugate
+        Mat3 adjugate = cofactor.transpose();
+
+        // Step 3: divide the adjugate by the determinant to get the inverse
+        Mat3 inverse;
+        for (int i = 0; i < 3; i++) 
+            for (int j = 0; j < 3; j++) 
+                inverse.data[i][j] = adjugate.data[i][j] / det;
+            
+        return inverse;
+    
     }
 
 }
