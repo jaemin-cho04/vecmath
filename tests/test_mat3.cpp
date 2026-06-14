@@ -43,3 +43,24 @@ TEST(Mat3, Transpose) {
     EXPECT_DOUBLE_EQ(t.data[2][1], 6.0);
     EXPECT_DOUBLE_EQ(t.data[2][2], 9.0);
 }
+
+TEST(Mat3, Multiply) {
+    double d1[3][3] = {{1.0, 2.0, 3.0},
+                       {4.0, 5.0, 6.0},
+                       {7.0, 8.0, 9.0}};
+    double d2[3][3] = {{9.0, 8.0, 7.0},
+                       {6.0, 5.0, 4.0},
+                       {3.0, 2.0, 1.0}};
+    Mat3 m1(d1);
+    Mat3 m2(d2);
+    Mat3 product = m1 * m2;
+    EXPECT_DOUBLE_EQ(product.data[0][0], 30.0);
+    EXPECT_DOUBLE_EQ(product.data[0][1], 24.0);
+    EXPECT_DOUBLE_EQ(product.data[0][2], 18.0);
+    EXPECT_DOUBLE_EQ(product.data[1][0], 84.0);
+    EXPECT_DOUBLE_EQ(product.data[1][1], 69.0);
+    EXPECT_DOUBLE_EQ(product.data[1][2], 54.0);
+    EXPECT_DOUBLE_EQ(product.data[2][0], 138.0);
+    EXPECT_DOUBLE_EQ(product.data[2][1], 114.0);
+    EXPECT_DOUBLE_EQ(product.data[2][2], 90.0);
+}

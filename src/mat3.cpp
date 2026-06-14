@@ -30,4 +30,17 @@ namespace linalg {
         return T;
     }
 
+    Mat3 operator*(const Mat3& a, const Mat3& b) {
+        Mat3 result;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                result.data[i][j] = 0.0;
+                for (int k = 0; k < 3; k++) {
+                    result.data[i][j] += a.data[i][k] * b.data[k][j];
+                }
+            }
+        }
+        return result;
+    }
+
 }

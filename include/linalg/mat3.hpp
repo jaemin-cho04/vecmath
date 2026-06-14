@@ -19,6 +19,8 @@ namespace linalg {
 
     };
 
+    Mat3 operator*(const Mat3& a, const Mat3& b); // matrix multiplication
+
 
 
 }
