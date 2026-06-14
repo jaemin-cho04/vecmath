@@ -43,4 +43,17 @@ namespace linalg {
         return result;
     }
 
+    double determinant(const Mat3& m) {
+        // For a 3x3 matrix:
+        // |a b c|
+        // |d e f|
+        // |g h i|
+        // det = a(ei - fh) - b(di - fg) + c(dh - eg)
+
+        double det = m.data[0][0] * (m.data[1][1] * m.data[2][2] - m.data[1][2] * m.data[2][1]) -
+                     m.data[0][1] * (m.data[1][0] * m.data[2][2] - m.data[1][2] * m.data[2][0]) +
+                     m.data[0][2] * (m.data[1][0] * m.data[2][1] - m.data[1][1] * m.data[2][0]);
+        return det;
+    }
+
 }
