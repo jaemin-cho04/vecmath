@@ -1,0 +1,33 @@
+#include <linalg/mat3.hpp>
+
+#include <cmath> // for std::sqrt, etc. when you need it
+
+namespace linalg {
+
+    Mat3::Mat3(double d[3][3]) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                data[i][j] = d[i][j];
+            }
+        }
+    }
+
+    Mat3 Mat3::identity() const {
+        Mat3 I;
+        for (int i = 0; i < 3; i++) {
+            I.data[i][i] = 1.0;
+        }
+        return I;
+    }
+
+    Mat3 Mat3::transpose() const {
+        Mat3 T;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                T.data[j][i] = data[i][j];
+            }
+        }
+        return T;
+    }
+
+}

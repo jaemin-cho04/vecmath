@@ -15,6 +15,7 @@ endif()
 # Every .cpp you add under src/ goes in this list.
 add_library(linalg
   src/vec3.cpp
+  src/mat3.cpp
 )
 
 # Anything that links `linalg` can #include <linalg/...> headers.

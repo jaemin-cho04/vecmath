@@ -12,6 +12,7 @@ FetchContent_MakeAvailable(googletest)
 # One test executable. Add more test_*.cpp files to this list as you grow.
 add_executable(unit_tests
   test_vec3.cpp
+  test_mat3.cpp
 )
 
 target_link_libraries(unit_tests
