@@ -21,6 +21,7 @@ namespace linalg {
 
     Mat3 operator*(const Mat3& a, const Mat3& b); // matrix multiplication
 
+    double determinant(const Mat3& m); // returns determinant of the matrix
 
 
 }

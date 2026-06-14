@@ -82,3 +82,12 @@ TEST(Mat3, MutiplyIdentity) {
     EXPECT_DOUBLE_EQ(product.data[2][0], 7.0);
     EXPECT_DOUBLE_EQ(product.data[2][1], 8.0);
 }
+
+TEST(Mat3, Determinant) {
+    double d[3][3] = {{1.0, 2.0, 3.0},
+                      {0.0, 1.0, 4.0},
+                      {5.0, 6.0, 0.0}};
+    Mat3 m(d);
+    double det = determinant(m);
+    EXPECT_DOUBLE_EQ(det, 1.0);
+}
