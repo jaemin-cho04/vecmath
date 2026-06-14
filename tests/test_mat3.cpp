@@ -64,3 +64,21 @@ TEST(Mat3, Multiply) {
     EXPECT_DOUBLE_EQ(product.data[2][1], 114.0);
     EXPECT_DOUBLE_EQ(product.data[2][2], 90.0);
 }
+
+TEST(Mat3, MutiplyIdentity) {
+    double d[3][3] = {{1.0, 2.0, 3.0},
+                      {4.0, 5.0, 6.0},
+                      {7.0, 8.0, 9.0}};
+    Mat3 m(d);
+    Mat3 I = Mat3().identity();
+    Mat3 product = m * I;
+    EXPECT_DOUBLE_EQ(product.data[0][0], 1.0);
+    EXPECT_DOUBLE_EQ(product.data[1][1], 5.0);
+    EXPECT_DOUBLE_EQ(product.data[2][2], 9.0);
+    EXPECT_DOUBLE_EQ(product.data[0][1], 2.0);
+    EXPECT_DOUBLE_EQ(product.data[0][2], 3.0);
+    EXPECT_DOUBLE_EQ(product.data[1][0], 4.0);
+    EXPECT_DOUBLE_EQ(product.data[1][2], 6.0);
+    EXPECT_DOUBLE_EQ(product.data[2][0], 7.0);
+    EXPECT_DOUBLE_EQ(product.data[2][1], 8.0);
+}
