@@ -16,10 +16,9 @@ namespace linalg {
         Mat3 identity() const; // returns identity matrix
         Mat3 transpose() const; // returns transposed matrix
         Mat3 inverse() const; // returns inverse matrix (if invertible)
-        Mat3 determinant() const; // returns determinant of the matrix
     };
 
     Mat3 operator*(const Mat3& a, const Mat3& b); // matrix multiplication
 
-
+    double determinant(const Mat3& m); // helper function for inverse
 }
