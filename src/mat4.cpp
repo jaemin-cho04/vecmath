@@ -12,4 +12,12 @@ namespace linalg {
             }
         }
     }
+
+    Mat4 Mat4::identity() const {
+        Mat4 I;
+        for (int i = 0; i < 4; i++) {
+            I.data[i][i] = 1.0;
+        }
+        return I;
+    }
 }

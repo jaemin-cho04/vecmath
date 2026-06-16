@@ -13,6 +13,7 @@ FetchContent_MakeAvailable(googletest)
 add_executable(unit_tests
   test_vec3.cpp
   test_mat3.cpp
+  test_mat4.cpp
 )
 
 target_link_libraries(unit_tests
