@@ -35,3 +35,68 @@ TEST(Mat4, Identity) {
     EXPECT_DOUBLE_EQ(I.data[3][1], 0.0);
     EXPECT_DOUBLE_EQ(I.data[3][2], 0.0);
 }
+
+TEST(Mat4, Transpose) {
+    double d[4][4] = {{1.0, 2.0, 3.0, 4.0},
+                      {5.0, 6.0, 7.0, 8.0},
+                      {9.0, 10.0, 11.0, 12.0},
+                      {13.0, 14.0, 15.0, 16.0}};
+    Mat4 m(d);
+    Mat4 t = m.transpose();
+    EXPECT_DOUBLE_EQ(t.data[0][0], 1.0);
+    EXPECT_DOUBLE_EQ(t.data[0][1], 5.0);
+    EXPECT_DOUBLE_EQ(t.data[0][2], 9.0);
+    EXPECT_DOUBLE_EQ(t.data[0][3], 13.0);
+    EXPECT_DOUBLE_EQ(t.data[1][0], 2.0);
+    EXPECT_DOUBLE_EQ(t.data[1][1], 6.0);
+    EXPECT_DOUBLE_EQ(t.data[1][2], 10.0);
+    EXPECT_DOUBLE_EQ(t.data[1][3], 14.0);
+    EXPECT_DOUBLE_EQ(t.data[2][0], 3.0);
+    EXPECT_DOUBLE_EQ(t.data[2][1], 7.0);
+    EXPECT_DOUBLE_EQ(t.data[2][2], 11.0);
+    EXPECT_DOUBLE_EQ(t.data[2][3], 15.0);
+    EXPECT_DOUBLE_EQ(t.data[3][0], 4.0);
+    EXPECT_DOUBLE_EQ(t.data[3][1], 8.0);
+    EXPECT_DOUBLE_EQ(t.data[3][2], 12.0);
+    EXPECT_DOUBLE_EQ(t.data[3][3], 16.0);
+}
+
+TEST(Mat4, Multiply) {
+    double d1[4][4] = {{1.0, 2.0, 3.0, 4.0},
+                       {5.0, 6.0, 7.0, 8.0},
+                       {9.0, 10.0, 11.0, 12.0},
+                       {13.0, 14.0, 15.0, 16.0}};
+    double d2[4][4] = {{16.0, 15.0, 14.0, 13.0},
+                       {12.0, 11.0, 10.0, 9.0},
+                       {8.0, 7.0, 6.0, 5.0},
+                       {4.0, 3.0, 2.0, 1.0}};
+    Mat4 m1(d1);
+    Mat4 m2(d2);
+    Mat4 product = m1 * m2;
+    EXPECT_DOUBLE_EQ(product.data[0][0], 80.0);
+    EXPECT_DOUBLE_EQ(product.data[0][1], 70.0);
+    EXPECT_DOUBLE_EQ(product.data[0][2], 60.0);
+    EXPECT_DOUBLE_EQ(product.data[0][3], 50.0);
+    EXPECT_DOUBLE_EQ(product.data[1][0], 240.0);
+    EXPECT_DOUBLE_EQ(product.data[1][1], 214.0);
+    EXPECT_DOUBLE_EQ(product.data[1][2], 188.0);
+    EXPECT_DOUBLE_EQ(product.data[1][3], 162.0);
+    EXPECT_DOUBLE_EQ(product.data[2][0], 400.0);
+    EXPECT_DOUBLE_EQ(product.data[2][1], 358.0);
+    EXPECT_DOUBLE_EQ(product.data[2][2], 316.0);
+    EXPECT_DOUBLE_EQ(product.data[2][3], 274.0);
+    EXPECT_DOUBLE_EQ(product.data[3][0], 560.0);
+    EXPECT_DOUBLE_EQ(product.data[3][1], 502.0);
+    EXPECT_DOUBLE_EQ(product.data[3][2], 444.0);
+    EXPECT_DOUBLE_EQ(product.data[3][3], 386.0);
+}
+
+TEST(Mat4, Determinant) {
+    double d[4][4] = {{1.0, 2.0, 3.0, 4.0},
+                      {5.0, 6.0, 7.0, 8.0},
+                      {9.0, 10.0, 11.0, 12.0},
+                      {13.0, 14.0, 15.0, 16.0}};
+    Mat4 m(d);
+    double det = determinant(m);
+    EXPECT_DOUBLE_EQ(det, 0.0);
+}
