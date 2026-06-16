@@ -100,3 +100,13 @@ TEST(Mat4, Determinant) {
     double det = determinant(m);
     EXPECT_DOUBLE_EQ(det, 0.0);
 }
+
+TEST(Mat4, DeterminantNonSingular) {
+    double d[4][4] = {{3.0, 2.0, 3.0, 4.0},
+                      {5.0, 6.0, 7.0, 8.0},
+                      {9.0, 10.0, 2.0, 12.0},
+                      {13.0, 2.0, 4.0, 17.0}}; // changed last element to make it non-singular
+    Mat4 m(d);
+    double det = determinant(m);
+    EXPECT_DOUBLE_EQ(det, -304.0);
+}
