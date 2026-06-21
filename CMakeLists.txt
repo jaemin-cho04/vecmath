@@ -17,6 +17,7 @@ add_library(linalg
   src/vec3.cpp
   src/mat3.cpp
   src/mat4.cpp
+  src/quaternion.cpp
 )
 
 # Anything that links `linalg` can #include <linalg/...> headers.
