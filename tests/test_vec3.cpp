@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <linalg/vec3.hpp>
+#include <cmath>
 
 using linalg::Vec3;
 

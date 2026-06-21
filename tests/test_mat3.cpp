@@ -1,6 +1,9 @@
 #include <gtest/gtest.h>
 #include <linalg/mat3.hpp>
 #include <linalg/vec3.hpp>
+#include <cmath>
+
+constexpr double PI = 3.14159265358979323846;
 
 using linalg::Mat3;
 using linalg::Vec3;
@@ -130,7 +133,7 @@ TEST(Mat3, InverseSingular) {
 }
 
 TEST(Mat3, RotationX) {
-    double theta = M_PI / 2;
+    double theta = PI / 2;
     Mat3 R = Mat3::rotationX(theta);
     Vec3 v(0, 1, 0);
     Vec3 rotated = R * v;
@@ -140,7 +143,7 @@ TEST(Mat3, RotationX) {
 }
 
 TEST(Mat3, RotationY) {
-    double theta = M_PI / 2;
+    double theta = PI / 2;
     Mat3 R = Mat3::rotationY(theta);
     Vec3 v(0, 0, 1);
     Vec3 rotated = R * v;
@@ -150,7 +153,7 @@ TEST(Mat3, RotationY) {
 }
 
 TEST(Mat3, RotationZ) {
-    double theta = M_PI / 2;
+    double theta = PI / 2;
     Mat3 R = Mat3::rotationZ(theta);
     Vec3 v(0, 1, 0);
     Vec3 rotated = R * v;

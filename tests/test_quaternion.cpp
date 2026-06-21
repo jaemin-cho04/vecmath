@@ -1,6 +1,9 @@
 #include <gtest/gtest.h>
 #include <linalg/quaternion.hpp>
 #include <linalg/vec3.hpp>
+#include <cmath>
+
+constexpr double PI = 3.14159265358979323846;
 
 using linalg::Quaternion;
 using linalg::Vec3;
@@ -24,7 +27,7 @@ TEST(Quaternion, Normalized) {
 
 TEST(Quaternion, FromAxisAngle) {
     Vec3 axis(0, 1, 0);
-    double angle = M_PI / 2; // 90 degrees
+    double angle = PI / 2; // 90 degrees
     Quaternion q = Quaternion::fromAxisAngle(axis, angle);
     EXPECT_NEAR(q.w, std::cos(angle / 2), 1e-9);
     EXPECT_NEAR(q.x, 0.0, 1e-9);
