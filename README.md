@@ -26,10 +26,9 @@ tests/            GoogleTest unit tests
 
 ## Roadmap
 
-- [ ] `Vec3` — add, subtract, scale, dot, cross, length, normalize, equality
-- [ ] `Mat3` / `Mat4` — multiply, transpose, identity, determinant, inverse
-- [ ] Rotations — rotation matrices, then quaternions
+- [x] `Vec3` — add, subtract, scale, dot, cross, length, normalize, equality
+- [x] `Mat3` / `Mat4` — multiply, transpose, identity, determinant, inverse
+- [x] Rotations — rotation matrices, then quaternions
 - [ ] Homogeneous 4×4 transforms (translation + rotation)
 - [ ] Demo: forward kinematics of a 2–3 link arm, printing the end-effector position
 - [ ] Generalize concrete types to templates: `Vec<N>`, `Mat<R, C>`
-```
