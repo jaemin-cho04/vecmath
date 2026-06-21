@@ -1,4 +1,6 @@
 #pragma once
+#include <linalg/vec3.hpp>
+#include <linalg/mat3.hpp>
 
 namespace linalg {
 
@@ -22,4 +24,8 @@ namespace linalg {
     Mat4 operator*(const Mat4& a, const Mat4& b); // matrix multiplication
 
     double determinant(const Mat4& m); // helper function for inverse
+
+    Mat4 fromRotationTranslation(const Mat3& rotation, const Vec3& translation); // creates a transformation matrix from rotation and translation
+
+
 }

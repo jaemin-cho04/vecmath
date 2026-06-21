@@ -99,4 +99,17 @@ namespace linalg {
         }
         return inv;
     }
+
+    Mat4 fromRotationTranslation(const Mat3& rotation, const Vec3& translation) {
+        Mat4 result = Mat4().identity();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                result.data[i][j] = rotation.data[i][j];
+            }
+        }
+        result.data[0][3] = translation.x;
+        result.data[1][3] = translation.y;
+        result.data[2][3] = translation.z;
+        return result;
+    }
 }

@@ -1,7 +1,12 @@
 #include <gtest/gtest.h>
 #include <linalg/mat4.hpp>
+#include <linalg/mat3.hpp>
+#include <linalg/vec3.hpp>
 
 using linalg::Mat4;
+using linalg::Mat3;
+using linalg::Vec3;
+
 
 // --- Sanity check ------------------------------------------------------------
 TEST(Mat4Setup, ToolchainWorks) {
@@ -137,4 +142,17 @@ TEST(Mat4, InverseSingular) {
                       {13.0, 14.0, 15.0, 16.0}}; // singular
     Mat4 m(d);
     EXPECT_THROW(m.inverse(), std::runtime_error);
+}
+
+TEST(Mat4, FromRotationTranslation) {
+    Mat3 rotation = Mat3().identity();
+    Vec3 translation(1.0, 2.0, 3.0);
+    Mat4 transform = fromRotationTranslation(rotation, translation);
+    EXPECT_DOUBLE_EQ(transform.data[0][0], 1.0);
+    EXPECT_DOUBLE_EQ(transform.data[1][1], 1.0);
+    EXPECT_DOUBLE_EQ(transform.data[2][2], 1.0);
+    EXPECT_DOUBLE_EQ(transform.data[0][3], 1.0);
+    EXPECT_DOUBLE_EQ(transform.data[1][3], 2.0);
+    EXPECT_DOUBLE_EQ(transform.data[2][3], 3.0);
+    EXPECT_DOUBLE_EQ(transform.data[3][3], 1.0);
 }
