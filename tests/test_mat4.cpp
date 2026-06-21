@@ -129,3 +129,12 @@ TEST(Mat4, Inverse) {
         }
     } 
 }
+
+TEST(Mat4, InverseSingular) {
+    double d[4][4] = {{1.0, 2.0, 3.0, 4.0},
+                      {5.0, 6.0, 7.0, 8.0},
+                      {9.0, 10.0, 11.0, 12.0},
+                      {13.0, 14.0, 15.0, 16.0}}; // singular
+    Mat4 m(d);
+    EXPECT_THROW(m.inverse(), std::runtime_error);
+}
