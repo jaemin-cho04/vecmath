@@ -1,7 +1,9 @@
 #include <gtest/gtest.h>
 #include <linalg/mat3.hpp>
+#include <linalg/vec3.hpp>
 
 using linalg::Mat3;
+using linalg::Vec3;
 
 // --- Sanity check ------------------------------------------------------------
 TEST(Mat3Setup, ToolchainWorks) {   
@@ -125,4 +127,34 @@ TEST(Mat3, InverseSingular) {
                       {7.0, 8.0, 9.0}};
     Mat3 m(d);
     EXPECT_THROW(m.inverse(), std::runtime_error);
+}
+
+TEST(Mat3, RotationX) {
+    double theta = M_PI / 2;
+    Mat3 R = Mat3::rotationX(theta);
+    Vec3 v(0, 1, 0);
+    Vec3 rotated = R * v;
+    EXPECT_NEAR(rotated.x, 0.0, 1e-9);
+    EXPECT_NEAR(rotated.y, 0.0, 1e-9);
+    EXPECT_NEAR(rotated.z, 1.0, 1e-9);
+}
+
+TEST(Mat3, RotationY) {
+    double theta = M_PI / 2;
+    Mat3 R = Mat3::rotationY(theta);
+    Vec3 v(0, 0, 1);
+    Vec3 rotated = R * v;
+    EXPECT_NEAR(rotated.x, 1.0, 1e-9);
+    EXPECT_NEAR(rotated.y, 0.0, 1e-9);
+    EXPECT_NEAR(rotated.z, 0.0, 1e-9);
+}
+
+TEST(Mat3, RotationZ) {
+    double theta = M_PI / 2;
+    Mat3 R = Mat3::rotationZ(theta);
+    Vec3 v(0, 1, 0);
+    Vec3 rotated = R * v;
+    EXPECT_NEAR(rotated.x, -1.0, 1e-9);
+    EXPECT_NEAR(rotated.y, 0.0, 1e-9);
+    EXPECT_NEAR(rotated.z, 0.0, 1e-9);
 }

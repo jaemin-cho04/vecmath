@@ -90,4 +90,45 @@ namespace linalg {
     
     }
 
+    Mat3 Mat3::rotationX(double theta) {
+        Mat3 R = Mat3().identity();
+        double c = std::cos(theta);
+        double s = std::sin(theta);
+        R.data[1][1] = c;
+        R.data[1][2] = -s;
+        R.data[2][1] = s;
+        R.data[2][2] = c;
+        return R;
+    }
+
+    Mat3 Mat3::rotationY(double theta) {
+        Mat3 R = Mat3().identity();
+        double c = std::cos(theta);
+        double s = std::sin(theta);
+        R.data[0][0] = c;
+        R.data[0][2] = s;
+        R.data[2][0] = -s;
+        R.data[2][2] = c;
+        return R;
+    }
+
+    Mat3 Mat3::rotationZ(double theta) {
+        Mat3 R = Mat3().identity();
+        double c = std::cos(theta);
+        double s = std::sin(theta);
+        R.data[0][0] = c;
+        R.data[0][1] = -s;
+        R.data[1][0] = s;
+        R.data[1][1] = c;
+        return R;
+    }
+
+    Vec3 operator*(const Mat3& m, const Vec3& v) {
+        Vec3 result;
+        result.x = m.data[0][0] * v.x + m.data[0][1] * v.y + m.data[0][2] * v.z;
+        result.y = m.data[1][0] * v.x + m.data[1][1] * v.y + m.data[1][2] * v.z;
+        result.z = m.data[2][0] * v.x + m.data[2][1] * v.y + m.data[2][2] * v.z;
+        return result;
+    }
+
 }
