@@ -4,9 +4,6 @@ A from-scratch C++ linear algebra and 3D geometry library — built by hand to
 learn the language and the math, not just call into Eigen. Foundation for
 robotics (transforms, kinematics) and aerospace (attitude, orbits) work.
 
-> Built without AI code generation. Every operation is implemented and tested
-> by hand so I can explain the *why* behind each design choice.
-
 ## Build & test
 
 ```bash
