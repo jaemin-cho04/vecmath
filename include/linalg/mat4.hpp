@@ -27,5 +27,5 @@ namespace linalg {
 
     Mat4 fromRotationTranslation(const Mat3& rotation, const Vec3& translation); // creates a transformation matrix from rotation and translation
 
-
+    Vec3 operator*(const Mat4& x, const Vec3& v); // transform a Vec3 by a Mat4 (assumes w=1 for homogeneous coordinates)
 }

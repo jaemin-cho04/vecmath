@@ -112,4 +112,11 @@ namespace linalg {
         result.data[2][3] = translation.z;
         return result;
     }
+
+    Vec3 operator*(const Mat4& m, const Vec3& v) {
+        double x = m.data[0][0] * v.x + m.data[0][1] * v.y + m.data[0][2] * v.z + m.data[0][3];
+        double y = m.data[1][0] * v.x + m.data[1][1] * v.y + m.data[1][2] * v.z + m.data[1][3];
+        double z = m.data[2][0] * v.x + m.data[2][1] * v.y + m.data[2][2] * v.z + m.data[2][3];
+        return Vec3(x, y, z);
+    }
 }

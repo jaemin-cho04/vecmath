@@ -2,6 +2,10 @@
 #include <linalg/mat4.hpp>
 #include <linalg/mat3.hpp>
 #include <linalg/vec3.hpp>
+#include <cmath>
+
+constexpr double PI = 3.14159265358979323846;
+
 
 using linalg::Mat4;
 using linalg::Mat3;
@@ -155,4 +159,28 @@ TEST(Mat4, FromRotationTranslation) {
     EXPECT_DOUBLE_EQ(transform.data[1][3], 2.0);
     EXPECT_DOUBLE_EQ(transform.data[2][3], 3.0);
     EXPECT_DOUBLE_EQ(transform.data[3][3], 1.0);
+}
+
+TEST(Mat4, FromRotationTranslationWithRotation) {
+    Mat3 rotation = Mat3::rotationZ(PI / 2); // 90 degree rotation around Z-axis
+    Vec3 translation(1.0, 2.0, 3.0);
+    Mat4 transform = fromRotationTranslation(rotation, translation);
+    EXPECT_NEAR(transform.data[0][0], 0.0, 1e-9);
+    EXPECT_NEAR(transform.data[0][1], -1.0, 1e-9);
+    EXPECT_NEAR(transform.data[1][0], 1.0, 1e-9);
+    EXPECT_NEAR(transform.data[1][1], 0.0, 1e-9);
+    EXPECT_NEAR(transform.data[2][2], 1.0, 1e-9);
+    EXPECT_NEAR(transform.data[0][3], 1.0, 1e-9);
+    EXPECT_NEAR(transform.data[1][3], 2.0, 1e-9);
+    EXPECT_NEAR(transform.data[2][3], 3.0, 1e-9);
+    EXPECT_NEAR(transform.data[3][3], 1.0, 1e-9);
+}
+
+TEST(Vec3, TransformByMat4) {
+    Mat4 transform = fromRotationTranslation(Mat3::rotationZ(PI / 2), Vec3(1.0, 2.0, 3.0));
+    Vec3 v(1.0, 0.0, 0.0);
+    Vec3 transformed = transform * v;
+    EXPECT_NEAR(transformed.x, 1.0, 1e-9); // rotated to (0, 1, 0) and then translated by (1, 2, 3)
+    EXPECT_NEAR(transformed.y, 3.0, 1e-9);
+    EXPECT_NEAR(transformed.z, 3.0, 1e-9);
 }
