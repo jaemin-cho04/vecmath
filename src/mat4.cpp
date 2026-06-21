@@ -65,4 +65,38 @@ namespace linalg {
         }
         return det;
     }
+
+    Mat4 Mat4::inverse() const {
+        double det = determinant(*this);
+        // bail out if matrix is singular
+        if (std::abs(det) < 1e-9) {
+            throw std::runtime_error("Matrix is not invertible");
+        }
+
+        Mat4 inv;
+        for (int col = 0; col < 4; col++) {
+            for (int row = 0; row < 4; row++) {
+                Mat3 submatrix;
+                int subrow = 0;
+                for (int i = 0; i < 4; i++) {
+                    if (i == row) continue; // skip the current row
+                    int subcol = 0;
+                    for (int j = 0; j < 4; j++) {
+                        if (j == col) continue; // skip the current column
+                        submatrix.data[subrow][subcol] = data[i][j];
+                        subcol++;   
+                    }
+                    subrow++;
+                }
+                inv.data[row][col] = determinant(submatrix) * ((row + col) % 2 == 0 ? 1 : -1);
+            }
+        }
+        Mat4 adjugate = inv.transpose(); // transpose to get the cofactor matrix
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                inv.data[i][j] = adjugate.data[i][j] / det;
+            }
+        }
+        return inv;
+    }
 }

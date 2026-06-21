@@ -110,3 +110,22 @@ TEST(Mat4, DeterminantNonSingular) {
     double det = determinant(m);
     EXPECT_DOUBLE_EQ(det, -304.0);
 }
+
+TEST(Mat4, Inverse) {
+    double d[4][4] = {{3.0, 2.0, 3.0, 4.0},
+                      {5.0, 6.0, 7.0, 8.0},
+                      {9.0, 10.0, 2.0, 12.0},
+                      {13.0, 2.0, 4.0, 17.0}}; // non-singular
+    Mat4 m(d);
+    Mat4 inv = m.inverse();
+    Mat4 identity = m * inv;
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (i == j) {
+                EXPECT_NEAR(identity.data[i][j], 1.0, 1e-9);
+            } else {
+                EXPECT_NEAR(identity.data[i][j], 0.0, 1e-9);
+            }
+        }
+    } 
+}
