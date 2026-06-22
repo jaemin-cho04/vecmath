@@ -21,8 +21,12 @@ void printMatrix(const Mat4& m) {
     }
 }
 
+double roundToZero(double value) {
+    return (std::abs(value) < 1e-9) ? 0.0 : value;
+}
+
 int main() {
-    double theta1, theta2, L1, L2; 
+    double theta1, theta2, theta3, L1, L2, L3;
 
     std::cout << "Enter theta1 (in degrees): ";
     std::cin >> theta1;
@@ -30,40 +34,47 @@ int main() {
     std::cout << "Enter theta2 (in degrees): ";
     std::cin >> theta2;
 
+    std::cout << "Enter theta3 (in degrees): ";
+    std::cin >> theta3;
+
     std::cout << "Enter L1: ";
     std::cin >> L1;
     
     std::cout << "Enter L2: ";
     std::cin >> L2;
 
+    std::cout << "Enter L3: ";
+    std::cin >> L3;
+
     std::cout << "Link 1: position = (" << L1 << ", 0.0, 0.0), rotation = " << theta1 << " degrees" << std::endl;
     std::cout << "Link 2: position = (" << L2 << ", 0.0, 0.0), rotation = " << theta2 << " degrees" << std::endl;
+    std::cout << "Link 3: position = (" << L3 << ", 0.0, 0.0), rotation = " << theta3 << " degrees" << std::endl;
 
     Vec3 link1Position = Mat3::rotationZ(theta1 * PI / 180.0) * Vec3(L1, 0.0, 0.0);
     Vec3 link2Position = Mat3::rotationZ(theta2 * PI / 180.0) * Vec3(L2, 0.0, 0.0);
+    Vec3 link3Position = Mat3::rotationZ(theta3 * PI / 180.0) * Vec3(L3, 0.0, 0.0);
 
-    if (std::abs(link1Position.x) < 1e-9) link1Position.x = 0.0;
-    if (std::abs(link1Position.y) < 1e-9) link1Position.y = 0.0;
-    if (std::abs(link1Position.z) < 1e-9) link1Position.z = 0.0;
-
-    if (std::abs(link2Position.x) < 1e-9) link2Position.x = 0.0;
-    if (std::abs(link2Position.y) < 1e-9) link2Position.y = 0.0;
-    if (std::abs(link2Position.z) < 1e-9) link2Position.z = 0.0;
+    link1Position = Vec3(roundToZero(link1Position.x), roundToZero(link1Position.y), roundToZero(link1Position.z));
+    link2Position = Vec3(roundToZero(link2Position.x), roundToZero(link2Position.y), roundToZero(link2Position.z));
+    link3Position = Vec3(roundToZero(link3Position.x), roundToZero(link3Position.y), roundToZero(link3Position.z));
 
     std::cout << "Link 1 position: (" << link1Position.x << ", " << link1Position.y << ", " << link1Position.z << ")" << std::endl;
     std::cout << "Link 2 position: (" << link2Position.x << ", " << link2Position.y << ", " << link2Position.z << ")" << std::endl;
+    std::cout << "Link 3 position: (" << link3Position.x << ", " << link3Position.y << ", " << link3Position.z << ")" << std::endl;
 
     Mat4 T1 = fromRotationTranslation(Mat3::rotationZ(theta1 * PI / 180.0), link1Position);
     Mat4 T2 = fromRotationTranslation(Mat3::rotationZ(theta2 * PI / 180.0), link2Position);
-
-
+    Mat4 T3 = fromRotationTranslation(Mat3::rotationZ(theta3 * PI / 180.0), link3Position);
 
     std::cout << "Transformation matrix T1:" << std::endl;
     printMatrix(T1);
     std::cout << "Transformation matrix T2:" << std::endl;
     printMatrix(T2);
+    std::cout << "Transformation matrix T3:" << std::endl;
+    printMatrix(T3);
 
-    Mat4 T = T1 * T2; // combined transformation
+    Mat4 T = T1 * T2 * T3; // combined transformation
+
 
     std::cout << "Combined transformation T:" << std::endl;
     printMatrix(T);
