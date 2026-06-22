@@ -23,6 +23,9 @@ add_library(linalg
 # Anything that links `linalg` can #include <linalg/...> headers.
 target_include_directories(linalg PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+add_executable(kinematics_demo src/main.cpp)
+target_link_libraries(kinematics_demo PRIVATE linalg)
+
 # --- Tests -------------------------------------------------------------------
 enable_testing()
 add_subdirectory(tests)
