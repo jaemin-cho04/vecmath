@@ -15,6 +15,7 @@ add_executable(unit_tests
   test_mat3.cpp
   test_mat4.cpp
   test_quaternion.cpp
+  test_vec_template.cpp
 )
 
 target_link_libraries(unit_tests
