@@ -61,7 +61,6 @@ namespace linalg {
     Mat3 Mat3::inverse() const {
         double det = determinant(*this);
         if (std::abs(det) < 1e-9) {
-            // Handle non-invertible case as you see fit (e.g., throw an exception, return identity, etc.)
             throw std::runtime_error("Matrix is not invertible");
         }
 

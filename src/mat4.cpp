@@ -5,7 +5,6 @@
 
 namespace linalg {
 
-    // implement constructor for Mat4
     Mat4::Mat4(double d[4][4]) {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {

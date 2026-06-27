@@ -1,4 +1,4 @@
-#pragma once //pragma stands for pragmatic directive
+#pragma once
 #include <linalg/vec3.hpp>
 
 namespace linalg {

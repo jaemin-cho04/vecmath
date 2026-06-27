@@ -6,14 +6,11 @@
 
 constexpr double PI = 3.14159265358979323846;
 
-
 using linalg::Mat4;
 using linalg::Mat3;
 using linalg::Vec3;
 
-
-// --- Sanity check ------------------------------------------------------------
-TEST(Mat4Setup, ToolchainWorks) {
+TEST(Mat4, ConstructsFromArray) {
     double d[4][4] = {{1.0, 2.0, 3.0, 4.0},
                       {5.0, 6.0, 7.0, 8.0},
                       {9.0, 10.0, 11.0, 12.0},

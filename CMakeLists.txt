@@ -18,13 +18,14 @@ add_library(linalg
   src/mat3.cpp
   src/mat4.cpp
   src/quaternion.cpp
+  src/transform.cpp
 )
 
 # Anything that links `linalg` can #include <linalg/...> headers.
 target_include_directories(linalg PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-add_executable(kinematics_demo src/main.cpp)
-target_link_libraries(kinematics_demo PRIVATE linalg)
+# Apps (demos/sims that use the library) will be re-added under apps/ once
+# Phase 2 starts. See CLAUDE.md for the plan.
 
 # --- Tests -------------------------------------------------------------------
 enable_testing()

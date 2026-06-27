@@ -4,31 +4,10 @@
 
 using linalg::Vec3;
 
-// --- Sanity check ------------------------------------------------------------
-// This passes immediately so your CI is green from commit #1. Delete it once
-// you have real tests below.
-TEST(Setup, ToolchainWorks) {
-    Vec3 v(1.0, 2.0, 3.0);
-    EXPECT_DOUBLE_EQ(v.x, 1.0);
-    EXPECT_DOUBLE_EQ(v.y, 2.0);
-    EXPECT_DOUBLE_EQ(v.z, 3.0);
-}
-
-// TEST(test suite, test name())
-
-// --- YOUR TESTS GO HERE ------------------------------------------------------
-// Write the test BEFORE or RIGHT AFTER each operation. The pattern:
-
-// TEST, EXPECT... are macros, they look like functions but they do more 
-// — they generate code that runs the test and reports results. 
-// You can write multiple EXPECTs in one TEST, but if one fails, 
-// the rest will still run (unlike ASSERT which aborts the test immediately).
-
 TEST(Vec3, AddsComponentwise) {
     Vec3 a(1, 2, 3);
     Vec3 b(4, 5, 6);
     Vec3 c = a + b;
-    // translates into operator+(a, b)
     EXPECT_DOUBLE_EQ(c.x, 5.0);
     EXPECT_DOUBLE_EQ(c.y, 7.0);
     EXPECT_DOUBLE_EQ(c.z, 9.0);
@@ -52,6 +31,22 @@ TEST(Vec3, MultipliesComponentwise) {
     EXPECT_DOUBLE_EQ(c.z, 9.0);
 }
 
+TEST(Vec3, UnaryNegation) {
+    Vec3 v(1, -2, 3);
+    Vec3 n = -v;
+    EXPECT_DOUBLE_EQ(n.x, -1.0);
+    EXPECT_DOUBLE_EQ(n.y, 2.0);
+    EXPECT_DOUBLE_EQ(n.z, -3.0);
+}
+
+TEST(Vec3, DividesByScalar) {
+    Vec3 v(2, 4, 6);
+    Vec3 c = v / 2.0;
+    EXPECT_DOUBLE_EQ(c.x, 1.0);
+    EXPECT_DOUBLE_EQ(c.y, 2.0);
+    EXPECT_DOUBLE_EQ(c.z, 3.0);
+}
+
 TEST(Vec3, DotProduct) {
     EXPECT_DOUBLE_EQ(dot(Vec3(1, 0, 0), Vec3(0, 1, 0)), 0.0);  // perpendicular
     EXPECT_DOUBLE_EQ(dot(Vec3(1, 2, 3), Vec3(1, 2, 3)), 14.0); // = length^2
@@ -68,8 +63,6 @@ TEST(Vec3, Length) {
 TEST(Vec3, Normalized) {
     Vec3 v(1, 0, 0);
     Vec3 n = v.normalized();
-    // when writing v.normalized(), the compiler translates that into Vec3::normalized(v) 
-    //— it passes v as the "this" pointer, which is how member functions work under the hood
     EXPECT_DOUBLE_EQ(n.x, 1.0);
     EXPECT_DOUBLE_EQ(n.y, 0.0);
     EXPECT_DOUBLE_EQ(n.z, 0.0);
@@ -105,4 +98,37 @@ TEST(Vec3, Compare) {
     Vec3 c(1.0 + 1e-10, 2.0 - 1e-10, 3.0 + 1e-10);
     EXPECT_TRUE(a == b); // should be exactly equal
     EXPECT_TRUE(a == c); // should be approximately equal within tolerance
+}
+
+TEST(Vec3, CompoundAssignment) {
+    Vec3 v(1, 2, 3);
+    v += Vec3(1, 1, 1);
+    EXPECT_TRUE(v == Vec3(2, 3, 4));
+
+    v -= Vec3(1, 1, 1);
+    EXPECT_TRUE(v == Vec3(1, 2, 3));
+
+    v *= 2.0;
+    EXPECT_TRUE(v == Vec3(2, 4, 6));
+
+    v /= 2.0;
+    EXPECT_TRUE(v == Vec3(1, 2, 3));
+}
+
+TEST(Vec3, Distance) {
+    Vec3 a(0, 0, 0);
+    Vec3 b(3, 4, 0);
+    EXPECT_DOUBLE_EQ(distance(a, b), 5.0);
+}
+
+TEST(Vec3, Lerp) {
+    Vec3 a(0, 0, 0);
+    Vec3 b(10, 20, 30);
+    Vec3 mid = lerp(a, b, 0.5);
+    EXPECT_DOUBLE_EQ(mid.x, 5.0);
+    EXPECT_DOUBLE_EQ(mid.y, 10.0);
+    EXPECT_DOUBLE_EQ(mid.z, 15.0);
+
+    EXPECT_TRUE(lerp(a, b, 0.0) == a);
+    EXPECT_TRUE(lerp(a, b, 1.0) == b);
 }

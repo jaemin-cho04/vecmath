@@ -8,8 +8,7 @@ constexpr double PI = 3.14159265358979323846;
 using linalg::Mat3;
 using linalg::Vec3;
 
-// --- Sanity check ------------------------------------------------------------
-TEST(Mat3Setup, ToolchainWorks) {   
+TEST(Mat3, ConstructsFromArray) {
     double d[3][3] = {{1.0, 2.0, 3.0},
                       {4.0, 5.0, 6.0},
                       {7.0, 8.0, 9.0}};

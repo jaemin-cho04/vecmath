@@ -3,17 +3,16 @@
 #include <cmath>
 #include <stdexcept>
 
-
-
 namespace linalg {
 
+    // A size- and type-generic vector: N components of type T (e.g.
+    // Vec<double, 3> is equivalent in spirit to Vec3, Vec<float, 4> holds 4
+    // floats, etc). Generalizes the same operations Vec3 implements
+    // concretely, with the size/type left as compile-time parameters.
     template<typename T, int N>
-
-
     struct Vec {
         T data[N];
-        
-        // Constructors
+
         Vec() = default;
 
         Vec(std::initializer_list<T> list) {
@@ -69,10 +68,28 @@ namespace linalg {
     }
 
     template<typename T, int N>
+    Vec<T, N> operator-(const Vec<T, N>& v) {
+        Vec<T, N> result;
+        for (int i = 0; i < N; i++) {
+            result.data[i] = -v.data[i];
+        }
+        return result;
+    }
+
+    template<typename T, int N>
     Vec<T, N> operator*(const Vec<T, N>& v, T scalar) {
         Vec<T, N> result;
         for (int i = 0; i < N; i++) {
             result.data[i] = v.data[i] * scalar;
+        }
+        return result;
+    }
+
+    template<typename T, int N>
+    Vec<T, N> operator/(const Vec<T, N>& v, T scalar) {
+        Vec<T, N> result;
+        for (int i = 0; i < N; i++) {
+            result.data[i] = v.data[i] / scalar;
         }
         return result;
     }
@@ -106,6 +123,4 @@ namespace linalg {
         return result;
     }
 
-    
-
-}
+}  // namespace linalg

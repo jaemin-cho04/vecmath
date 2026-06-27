@@ -17,4 +17,5 @@ cmake-build-*/
 *.exe
 
 CLAUDE.md
+AGENTS.md
 .claude
